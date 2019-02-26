@@ -13,28 +13,17 @@ module.exports = function check(str, bracketsConfig) {
     var count7 = 0;
 
     for (var i = 0; i < newArr.length; i++) {
-        if (newArr[i] == "{") {
-            count1++;
-        } else if (newArr[i] == "}") {
-            count2++;
-        } else if (newArr[i] == "(") {
-            count3++;
-        } else if (newArr[i] == ")") {
-            count4++;
-        } else if (newArr[i] == "[") {
-            count5++;
-        } else if (newArr[i] == "]") {
-            count6++;
-        } else if (newArr[i] == "|") {
-            count7++;
+        if (newArr[i] == "{" && newArr[i + 1] == "}" || newArr[i] == "(" && newArr[i + 1] == ")" || newArr[i] == "[" && newArr[i + 1] == "]" || newArr[i] == "|" && newArr[i + 1] == "|") {
+            newArr.splice(i, 2);
+            i=i-2;
+
         }
     }
-    if (count1 == count2 && count3 == count4 && count5 == count6 && count7 % 2 == 0) {
+    if (newArr.length == 0) {
         return true;
     } else {
         return false;
     }
-
 
 
 }
